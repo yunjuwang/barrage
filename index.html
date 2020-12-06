@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Video Player</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<h1>The video element</h1>
+
+<div id="display">
+  <video id="video" width="800" controls>
+    <source src="./video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <canvas id="canvas"></canvas>
+</div>
+
+<div id="comments">
+  <ul id="commentList">
+    123
+  </ul>
+</div>
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js'></script>
+<script src="./script.js"></script>
+
+</body>
+</html>
