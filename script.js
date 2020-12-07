@@ -1,21 +1,20 @@
 var video = document.getElementById('video')
 var canvas = document.getElementById('canvas')
 var ctx = canvas.getContext('2d')
-//set canvas size
 canvas.width = video.clientWidth
 canvas.height = video.clientHeight
-ctx.font = "30px Times New Roman";
+ctx.font = "30px Arial";
 
 var barrages = []
 
 var Barrage = function(comment){
   this.getColor = function(){
     // let colors = ["red", "yellow", "orange", "green", "blue", "purple"]
-    let colors = ['#F24B78','#F285B8','#5B9ED9','#A9D9BE','#F2C12E','#F46122','#9B88D7','#444444']
+    let colors = ['#F24B78','#F285B8','#5B9ED9','#A9D9BE','#F2C12E','#F46122','#9B88D7']
     return colors[Math.floor(Math.random()*colors.length)]
   }
   this.getTop = function(){
-    return Math.random() * (canvas.height - 50) + 30
+    return Math.random() * (canvas.height - 80) + 30
   }
   this.sec = comment.sec
   this.duration = comment.duration
@@ -53,12 +52,8 @@ function updateBarrage(){
     if(time <= startTime) barrage.right = 0
     else if(time >= startTime + durTime) barrage.right = to
     else barrage.right = to * (time - startTime) / durTime
-    /*
-    0 >>>>>>>>> X >>>>>>>> to
-    startTime  time   endTime
-    (time - startTime) : (endTime-startTime) = x : to
-    x = to * (time - startTime) / (endTime-startTime)
-    */
+    /*  0 >>>>>>>>> X >>>>>>>> to
+        startTime  time   endTime*/
   })
 }
 
@@ -103,3 +98,14 @@ function drawCanvas(){
 }
 
 update()
+
+$("#opacity-bar").on("input change", function() {
+  $('#canvas').css('opacity', this.value)
+});
+$("#fontsize-bar").on("input change", function() {
+  ctx.font = this.value +"px Arial";
+  barrages.forEach(barrage=>{
+    barrage.width = ctx.measureText(barrage.text).width
+  })
+  drawCanvas()
+});

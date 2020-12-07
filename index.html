@@ -6,21 +6,27 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'><link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<h1>The video element</h1>
-
-<div id="display">
-  <video id="video" width="800" controls>
-    <source src="./video.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <canvas id="canvas"></canvas>
+<div class="header">
+  <h1>The Barrage video player <i class="fas fa-play"></i></h1>
 </div>
 
-<div id="comments">
-  <ul id="commentList">
-    123
-  </ul>
+<div class="block">
+  <div id="display">
+    <video playsinline id="video" width="800" controls disablePictureInPicture>
+      <source src="./video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <div class="control">
+    不透明度
+    <input type="range" id="opacity-bar" min="0" max="1" step="0.01" value="0.9">
+    字體大小
+    <input type="range" id="fontsize-bar" min="18" max="36" step="1" value="30">
+  </div>
 </div>
+
 
 <!-- partial -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
