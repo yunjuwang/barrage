@@ -33,7 +33,7 @@ function update() {
         updateBarrage()
         if(Math.floor(time) != Math.floor(lastTime) &&
         barrages.findIndex(barrage=>barrage.sec==Math.floor(time))==-1){
-          loadBarrage()
+          loadBarrage(Math.floor(time))
         }
         drawCanvas()
         lastTime = time;
@@ -57,36 +57,37 @@ function updateBarrage(){
   })
 }
 
-function loadBarrage(){
-  let sec = Math.floor(video.currentTime)
-  //test on local
-  $.ajax({
-    url: './comments/getBySecond/' + sec + '.json', 
-    type: 'get',
-    dataType: 'json',
-    error: function (xhr) {
-      console.log("No comment at " + sec + " sec")
-    }, 
-    success: function (comment) { 
-      if(!$.isEmptyObject(comment)){
-        let barrage = new Barrage(comment)
-        barrages.push(barrage)
-      }
-    }
-  })
+function loadBarrage(sec){
+  // let sec = Math.floor(video.currentTime)
 
+  // //test on local
   // $.ajax({
-  //   url: './comments/getBySecond', 
+  //   url: './comments/getBySecond/' + sec + '.json', 
   //   type: 'get',
   //   dataType: 'json',
-  //   data: { 'sec': sec },
+  //   error: function (xhr) {
+  //     console.log("No comment at " + sec + " sec")
+  //   }, 
   //   success: function (comment) { 
   //     if(!$.isEmptyObject(comment)){
   //       let barrage = new Barrage(comment)
   //       barrages.push(barrage)
   //     }
   //   }
-  // });
+  // })
+
+  $.ajax({
+    url: './comments/getBySecond', 
+    type: 'get',
+    dataType: 'json',
+    data: { 'sec': sec },
+    success: function (comment) { 
+      if(!$.isEmptyObject(comment)){
+        let barrage = new Barrage(comment)
+        barrages.push(barrage)
+      }
+    }
+  });
 }
 
 function drawCanvas(){
